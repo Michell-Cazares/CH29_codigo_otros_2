@@ -13,31 +13,35 @@ let formulario = document.querySelector("#form");
 let txtName = document.getElementById("txtName");
 let txtAge = document.getElementById("txtAge");
 let nationality = document.getElementById("nationality");
-let valid = true;
+let name = false;
+let age = false;
 
 formulario.onsubmit = function (event) {
   event.preventDefault();
-  if (txtName.value.trim() == "") {
+  console.log(txtName.value.trim());
+
+  if (txtName.value == "") {
     txtName.classList.add("error");
-    valid = false;
+    name = false;
   } else {
-    valid = true;
+    name = true;
     txtName.classList.remove("error");
   }
 
   if (txtAge.value < 18 || txtAge.value > 120) {
     txtAge.classList.add("error");
-    valid = false;
+    age = false;
   } else {
-    valid = true;
+    age = true;
     txtAge.classList.remove("error");
   }
 
-  if (valid) {
+  if (name && age) {
     txtName.classList.remove("error");
     txtAge.classList.remove("error");
-    agregarInvitado(txtName.value, txtAge.value, nationality.value)
+    agregarInvitado(txtName.value, txtAge.value, nationality.value);
   }
+
 }
 
 var botonBorrar = document.createElement("button");
